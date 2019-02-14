@@ -49,7 +49,6 @@ Configuration possible to change in file [config.js](https://github.com/pavoltra
 
 ```
 npm install --prefix frontend
-npm start --prefix frontend
 ```
 
 Tests:
