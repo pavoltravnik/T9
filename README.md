@@ -14,8 +14,6 @@ Backend service is build up by docker simply by running comand:
 docker-compose up
 ```
 
-and then service is available at port 80.
-
 Tests:
 
 ```
@@ -45,13 +43,8 @@ Simple React Native app, which is connected to backend.
 
 Configuration possible to change in file [config.js](https://github.com/pavoltravnik/T9/blob/master/frontend/config.js)
 
-There are two versions:
-
-1. version is connected to backend to simply make a connection
-2. version is local only and using lunr with optimised search getting best performance for a user and possibility to use app even offline
-
 Tests:
 
 ```
-cd frontend1; npm i; npm run test
+cd frontend; npm i; npm run test
 ```
