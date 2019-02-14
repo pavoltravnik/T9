@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, SafeAreaView, View } from 'react-native';
-import { SERVER_NAME } from '../config';
+import { StyleSheet, Text, TextInput, SafeAreaView, View, FlatList } from 'react-native';
+import { SERVER_NAME } from './config';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,8 +18,9 @@ export default class App extends React.Component {
 
 
   onChange = (number) => {
-    this.setState(number)
-    fetch(`http://${SERVER_NAME}/api/dictionary`, {
+    this.setState(number);
+    number = parseInt(number.number, 0);
+    fetch(`https://${SERVER_NAME}/api/dictionary`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -35,7 +36,6 @@ export default class App extends React.Component {
           isLoading: false,
           results: responseJson.resp,
         });
-
       })
       .catch((error) =>{
         console.error(error);
@@ -43,25 +43,32 @@ export default class App extends React.Component {
   }
 
   render() {
-    const results = this.state.results.map((match, index) =>
-      <li key={index}>
-        {match.text}
-      </li>
-    )
+    const results = this.state.results
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={styles.container}>
-          <View>
+          <View
+            style={styles.search}
+          >
             <TextInput
               style={styles.textInput}
               keyboardType="decimal-pad"
               placeholder="Insert number"
-              onChangeText={(text) => this.onChange({text})}
+              onChangeText={(number) => this.onChange({number})}
               maxLength={16}
             />
-            <Text style={styles.results}>
-              {results}
-            </Text>
+          </View>
+          <View
+            style={styles.results}
+          >
+            { !this.state.isLoading &&
+              <FlatList
+                style={styles.FlatList}
+                data={results}
+                renderItem={({item}) => <Text style={styles.item}>{item.text}</Text>}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            }
           </View>
         </View>
       </SafeAreaView>
@@ -72,7 +79,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    padding: 10
+    padding: 10,
+    flex:1,
   },
   textInput: {
     height: 57,
@@ -81,8 +89,15 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1
   },
+  search: {
+    flex: 1,
+  },
   results: {
+    flex: 7,
+  },
+  FlatList: {
     padding: 10,
-    fontSize: 32,
+    fontSize: 22,
+    height: 50,
   }
 });

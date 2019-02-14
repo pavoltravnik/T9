@@ -29,6 +29,8 @@ t9Router.route('/cartesian')
 			return res.status(400).json({ err: 'not a number' });
 		} if (number.toString().length > 7) {
 			return res.status(400).json({ err: 'too long' });
+		} if (number.toString().length === 0) {
+			return res.status(400).json({ res: [] });
 		}
 		const t9letters = numberToT9(number);
 		return res.json({ resp: product(...t9letters) });
@@ -37,13 +39,16 @@ t9Router.route('/cartesian')
 t9Router.route('/dictionary')
 	.post((req, res) => {
 		const { number } = req.body;
+		// Duplicated because of different error values
 		if (typeof number !== 'number') {
 			return res.status(400).json({ err: 'not a number' });
 		} if (number.toString().length > 20) {
 			return res.status(400).json({ err: 'too long' });
+		} if (number.toString().length === 0) {
+			return res.status(200).json({ res: [] });
 		}
 		// eslint-disable-next-line max-len
-		const arrayResult = dictionary.filter((value => value.nums.startsWith(number.toString())));
+		const arrayResult = dictionary.filter((value => value.nums.startsWith(number.toString()))).slice(0, 50);
 		return res.json({
 			resp: arrayResult,
 		});
