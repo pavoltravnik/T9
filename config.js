@@ -1,0 +1,1 @@
+export const SERVER_NAME = '68.183.38.204';

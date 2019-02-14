@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView>
+  <View
+    style={
+      Object {
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <View>
+      <TextInput
+        allowFontScaling={true}
+        keyboardType="decimal-pad"
+        maxLength={16}
+        onChangeText={[Function]}
+        placeholder="Insert number"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "fontSize": 32,
+            "height": 57,
+            "padding": 15,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+      <Text
+        style={
+          Object {
+            "fontSize": 32,
+            "padding": 10,
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
