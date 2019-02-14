@@ -14,13 +14,14 @@ T9 fullstack app
 Backend service is build up by docker simply by running comand:
 
 ```
+npm install --prefix backend
 docker-compose up -d
 ```
 
 Tests:
 
 ```
-cd backend; npm i; npm run test
+npm test --prefix backend
 ```
 
 
@@ -46,8 +47,13 @@ Simple React Native app, which is connected to backend.
 
 Configuration possible to change in file [config.js](https://github.com/pavoltravnik/T9/blob/master/frontend/config.js)
 
+```
+npm install --prefix frontend
+npm start --prefix frontend
+```
+
 Tests:
 
 ```
-cd frontend; npm i; npm run test
+npm test --prefix frontend
 ```
