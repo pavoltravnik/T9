@@ -14,7 +14,7 @@ T9 fullstack app
 Backend service is build up by docker simply by running comand:
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 Tests:
